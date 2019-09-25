@@ -1,0 +1,17 @@
+FROM rabbitmq:3-management
+
+# Define environment variables.
+ENV RABBITMQ_USER user
+ENV RABBITMQ_PASSWORD user
+
+ENV RABBITMQ_ERLANG_COOKIE="i love cookies"
+ENV RABBITMQ_NODENAME="rabbit2@docker3"
+
+# no hostname here, because you need to specify this with the docker container run command.
+
+ADD init.sh /init.sh
+EXPOSE 15672
+EXPOSE 5672
+
+# Define default command
+CMD ["/init.sh"]
